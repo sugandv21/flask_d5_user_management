@@ -5,10 +5,6 @@ from datetime import datetime
 
 main = Blueprint("main", __name__)
 
-# -------------------------
-# HTML ROUTES (Forms)
-# -------------------------
-
 @main.route("/")
 def index():
     users = User.query.all()
@@ -49,10 +45,6 @@ def delete_user(id):
     db.session.commit()
     flash("User deleted successfully!", "danger")
     return redirect(url_for("main.index"))
-
-# -------------------------
-# API ROUTES (JSON)
-# -------------------------
 
 # GET all users
 @main.route("/api/users", methods=["GET"])
@@ -109,3 +101,4 @@ def delete_user_api(id):
     db.session.delete(user)
     db.session.commit()
     return jsonify({"message": "User deleted successfully!"})
+
